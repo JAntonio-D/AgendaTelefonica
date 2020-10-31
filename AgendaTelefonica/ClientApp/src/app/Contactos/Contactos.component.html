@@ -1,11 +1,11 @@
 <div>
 <h1>Agenda Telefónica</h1>
 <br />
-<br />
 <h2>Registrar Contacto</h2>
 <br />
 <p>Favor de ingresar la informacion de su contacto</p>
-		<form class="" [formGroup]="formDatosContacto" >
+	<div>
+			<form class="col-xs-8 col-sm-8 col-md-8 col-lg-8" [formGroup]="formDatosContacto" >
   			<div class="">
 					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.nombre.invalid && valida}" for="nombre">Nombre: </label>
 					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.nombre.invalid && valida}">
@@ -59,15 +59,18 @@
 						</div>
 					</div>
 				</div>
-
 		</form>
 
-	<div class="" >		
+
+	</div>
+	
+	<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" >
+					<p class="txt red mb-5">{{mensajeError}}</p>
+					<p class="txt red mb-5">{{mensaje}}</p>
 				<button 
 				(click)="Registrar()" 
-				class="btn" >Registrar</button>
-			<p class="txt red mb-5">{{mensajeError}}</p>
-			<p class="txt red mb-5">{{mensaje}}</p>
+				class="btn-success btn" >Registrar</button>
+
 		</div>	
 		
 </div>

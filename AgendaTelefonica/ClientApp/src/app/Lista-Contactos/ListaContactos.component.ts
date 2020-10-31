@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './ListaContactos.component.html',
+  templateUrl: './ListaContactos.component.html'
 })
 export class ListaContactosComponent {
   public lContactos: Observable<Contacto[]>;

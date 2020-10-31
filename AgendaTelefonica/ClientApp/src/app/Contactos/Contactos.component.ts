@@ -18,6 +18,7 @@ export class ContactosComponent {
 
     this.formDatosContacto = this.fb.group({
 
+
       nombre: ['', Validators.compose(
         [Validators.required,
         Validators.pattern(/[a-zA-Z????????????\s]/)
@@ -54,7 +55,8 @@ export class ContactosComponent {
     let Info =  new Contacto();
     this.Info = Info.inicializar();
 
-  }
+
+      }
 
 
   Registrar() {

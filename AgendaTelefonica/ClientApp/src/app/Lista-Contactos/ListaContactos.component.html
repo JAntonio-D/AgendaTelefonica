@@ -1,14 +1,15 @@
 <h1>Agenda Telefónica</h1>
-<table style="width:100%">
+<br />
+<table style="width:100%" class="table table-dark">
   <tr>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Telefono</th>
-    <th>Movil</th>
-    <th>Direccion</th>
-    <th>Email</th>
-    <th>Editar</th>
-    <th>Elimnar</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">Telefono</th>
+    <th scope="col">Movil</th>
+    <th scope="col">Direccion</th>
+    <th scope="col">Email</th>
+    <th scope="col">Editar</th>
+    <th scope="col">Elimnar</th>
   </tr>
   <tr *ngFor="let contacto of lContactos | async; let i= index" [attr.data-index]="i">
     <td>{{ contacto.nombre }}</td>
@@ -17,8 +18,8 @@
     <td>{{ contacto.movil }}</td>
     <td>{{ contacto.direccion }}</td>
     <td>{{ contacto.email }}</td>
-    <td><button (click)="Edit(contacto)">Editar</button></td> |
-    <td><button (click)="Delete(contacto)" >Borrar</button></td>
+    <td><button class="btn btn-primary" (click)="Edit(contacto)">Editar</button></td>
+    <td><button class="btn btn-danger"  (click)="Delete(contacto)" >Borrar</button></td>
     
   </tr>
  
@@ -27,7 +28,7 @@
  <div class="popback" id="popback" [hidden]="!popActivo">
             <div class="alert popamigable"  id="popupamigable"  [hidden]="!popActivo">
 
-              <form class="" [formGroup]="formDatosContacto" >
+              <form class="col-xs-8 col-sm-8 col-md-8 col-lg-8" [formGroup]="formDatosContacto" >
   			<div class="">
 					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.nombre.invalid && valida}" for="nombre">Nombre: </label>
 					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.nombre.invalid && valida}">
@@ -83,7 +84,10 @@
 				</div>
 
 		</form>
-                    <button id="cerrarpop" type="button"  class="btn-action btn_yellow center mt-5 mb-5" (click)="RegistrarEdit()" >Guardar</button>        
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								    <button id="cerrarpop" type="button"  class="btn-action btn-success btn center mt-5 mb-5" (click)="RegistrarEdit()" >Guardar</button>         
+							</div>
+                
             </div>	
         </div>
 
