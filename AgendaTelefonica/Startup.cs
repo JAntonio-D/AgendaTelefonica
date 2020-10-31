@@ -8,16 +8,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace AgendaTelefonica
 {
     public class Startup
-    {
-        readonly string cors = "cors";
+    {        
+        readonly string cors = "cors";        
+        string DB = @"D:\Program_Files\GitHub\AgendaTelefonica\AgendaTelefonica\AgendaTelefonica.Data\AgendaDB.mdf;";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
+        }       
 
         public IConfiguration Configuration { get; }
 
@@ -43,7 +45,7 @@ namespace AgendaTelefonica
             });
 
 
-            var connection = @"Server=(LocalDB)\MSSQLLocalDB;attachdbfilename=D:\Program_Files\GitHub\AgendaTelefonica\AgendaTelefonica\AgendaTelefonica.Data\AgendaDB.mdf;integrated security=True;MultipleActiveResultSets=True";
+            var connection = @"Server=(LocalDB)\MSSQLLocalDB;attachdbfilename=" + DB + "integrated security=True;MultipleActiveResultSets=True";
 
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(connection));
 
