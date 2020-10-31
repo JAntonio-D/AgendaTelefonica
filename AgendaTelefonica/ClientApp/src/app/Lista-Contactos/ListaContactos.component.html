@@ -1,0 +1,89 @@
+<h1>Agenda Telefónica</h1>
+<table style="width:100%">
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Telefono</th>
+    <th>Movil</th>
+    <th>Direccion</th>
+    <th>Email</th>
+    <th>Editar</th>
+    <th>Elimnar</th>
+  </tr>
+  <tr *ngFor="let contacto of lContactos | async; let i= index" [attr.data-index]="i">
+    <td>{{ contacto.nombre }}</td>
+    <td>{{ contacto.apellido }}</td>
+    <td>{{ contacto.telefono }}</td>
+    <td>{{ contacto.movil }}</td>
+    <td>{{ contacto.direccion }}</td>
+    <td>{{ contacto.email }}</td>
+    <td><button (click)="Edit(contacto)">Editar</button></td> |
+    <td><button (click)="Delete(contacto)" >Borrar</button></td>
+    
+  </tr>
+ 
+</table>
+
+ <div class="popback" id="popback" [hidden]="!popActivo">
+            <div class="alert popamigable"  id="popupamigable"  [hidden]="!popActivo">
+
+              <form class="" [formGroup]="formDatosContacto" >
+  			<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.nombre.invalid && valida}" for="nombre">Nombre: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.nombre.invalid && valida}">
+						<div class="">
+							<input type="text" name="nombre" [(ngModel)]="Info.nombre" class="form-control" formControlName="nombre" pattern="^[a-zA-Z-zÀ-ÿ\s ']*$">
+						</div>
+					</div>
+				</div>
+
+				<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.apellido.invalid && valida}" for="apellido">Apellido: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.apellido.invalid && valida}">
+						<div class="">
+							<input type="text" name="apellido" [(ngModel)]="Info.apellido" class="form-control" formControlName="apellido" pattern="^[a-zA-Z-zÀ-ÿ\s ']*$">
+						</div>
+					</div>
+				</div>
+
+				<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.direccion.invalid && valida}" for="direccion">Dirección: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.direccion.invalid && valida}">
+						<div class="">
+							<input type="text" name="direccion" [(ngModel)]="Info.direccion" class="form-control" formControlName="direccion">
+						</div>
+					</div>
+				</div>
+
+				<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.telefono.invalid && valida}" for="telefono">Teléfono	: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.telefono.invalid && valida}">
+						<div class="">
+							<input type="tel" name="telefono" [(ngModel)]="Info.telefono" class="form-control" formControlName="telefono" pattern="^[0-9]+$">
+						</div>
+					</div>
+				</div>
+
+				<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.movil.invalid && valida}" for="movil">Móvil: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.movil.invalid && valida}">
+						<div class="">
+							<input type="tel" name="movil" [(ngModel)]="Info.movil" class="form-control" formControlName="movil" pattern="^[0-9]+$">
+						</div>
+					</div>
+				</div>
+
+				<div class="">
+					<label class="" [ngClass]="{'txt red': formDatosContacto.controls.Email.invalid && valida}" for="Email">Email: </label>
+					<div class="form-group" [ngClass]="{'has-error': formDatosContacto.controls.Email.invalid && valida}">
+						<div class="">
+							<input type="text" name="Email" [(ngModel)]="Info.Email" class="form-control" formControlName="Email">
+						</div>
+					</div>
+				</div>
+
+		</form>
+                    <button id="cerrarpop" type="button"  class="btn-action btn_yellow center mt-5 mb-5" (click)="RegistrarEdit()" >Guardar</button>        
+            </div>	
+        </div>
+
