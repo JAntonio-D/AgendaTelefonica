@@ -14,12 +14,28 @@ namespace AgendaTelefonica
 {
     public class Startup
     {        
-        readonly string cors = "cors";        
-        string DB = @"D:\Program_Files\GitHub\AgendaTelefonica\AgendaTelefonica\AgendaTelefonica.Data\AgendaDB.mdf;";
+        readonly string cors = "cors";                
+        string DB = GetValueFromSection("Database", "Local");
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }       
+
+        public static IConfigurationSection GetSection(string section)
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+            return configuration.GetSection(section);
+        }
+        public static string GetValueFromSection(string section, string key)
+        {
+            IConfigurationSection settings = GetSection(section);
+
+            return settings.GetSection(key).Value;
+        }        
 
         public IConfiguration Configuration { get; }
 
@@ -45,8 +61,8 @@ namespace AgendaTelefonica
             });
 
 
-            var connection = @"Server=(LocalDB)\MSSQLLocalDB;attachdbfilename=" + DB + "integrated security=True;MultipleActiveResultSets=True";
-
+            var connection = @"Server=(LocalDB)\MSSQLLocalDB;attachdbfilename=" + (Directory.GetCurrentDirectory()) + DB + "integrated security=True;MultipleActiveResultSets=True";
+            
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(connection));
 
         }
